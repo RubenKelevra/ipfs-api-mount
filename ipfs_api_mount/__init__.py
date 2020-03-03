@@ -338,3 +338,9 @@ class IPFSMount(fuse.Operations):
 
     getxattr = None
     listxattr = None
+    access = None
+    flush = None
+    release = None
+    releasedir = None
+    statfs = None
+    
