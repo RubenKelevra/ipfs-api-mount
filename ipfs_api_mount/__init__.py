@@ -28,6 +28,7 @@ class IPFSMount(fuse.Operations):
         ls_cache_size=64,
         object_data_cache_size=256,  # 2 * ~256MB assuming 1MB max block size
         object_links_cache_size=256,
+        open_cache_size=1048576,
         ready=None,  # an event to notify that everything is set-up
     ):
         self.root = root
@@ -263,6 +264,7 @@ class IPFSMount(fuse.Operations):
         # every other thing is empty
         return offset
 
+    @lru_cache(maxsize=open_cache_size)
     def open(self, path, flags):
         write_flags = (
             os.O_WRONLY |
