@@ -61,4 +61,6 @@ if __name__ == '__main__':
             foreground=not args.background,
             nothreads=not args.multithreaded,
             auto_unmount=True,
+            ro=True,
+            allow_other=True,
         )
